@@ -27,8 +27,6 @@ class ArticleController extends AbstractController
     #[Route('/articles', name: 'articles')]
     public function index(ArticleRepository $repository, Request $request, PaginatorInterface $paginationInterface): Response
     {
-        //$repository = $this->em->getRepository(Article::class);
-        //$repository->findAll();
         $paginator = $repository->paginate($request->query->getInt("page", 1));
         $paginator->setTemplate("pagination/tailwindcss_pagination.html.twig");
 
